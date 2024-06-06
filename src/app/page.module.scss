@@ -1,5 +1,130 @@
 main.main{
+  position: relative;
+  background-color: #031d2c;
+
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    left: 50%;
+    background-color: black;
+    transform: translate(-50%, 0);
+  }
   h1{
     font-family: var(--font-primary);
+  }
+  .cellularItems{
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 103vh;
+    margin-right: -50vw;
+    margin-top: -3vh;
+    overflow: hidden;
+
+    .FirstMainItem{
+      order: 1;
+      border: 23px solid #425561;
+    }
+    
+    >div{
+      width: 33.33%;
+      min-width: 100px;
+      height: auto;
+      aspect-ratio: 1/1;
+      margin-bottom: -3%;
+
+      &:nth-child(6n+4){
+        margin-left: -16.666%;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 300px){
+  main.main{
+    .cellularItems{
+      display: flex;
+      flex-wrap: wrap;
+      max-height: 103vh;
+      margin-right: -33vw;
+      margin-top: -3vh;
+      overflow: hidden;
+      
+      >div{
+        width: 25%;
+        min-width: 100px;
+        height: auto;
+        aspect-ratio: 1/1;
+        margin-bottom: -3%;
+
+        &:nth-child(6n+4){
+          margin-left: 0;
+        }
+  
+        &:nth-child(8n+5){
+          margin-left: -12.5%;
+        }
+      }
+    }
+  }
+}
+
+
+// Media queries Mobile
+@media (min-width: 460px){
+  main.main{
+    .cellularItems{
+      display: flex;
+      flex-wrap: wrap;
+      max-height: 103vh;
+      margin-right: -33vw;
+      margin-top: -3vh;
+      overflow: hidden;
+      
+      >div{
+        width: 25%;
+        min-width: 150px;
+        height: auto;
+        aspect-ratio: 1/1;
+        margin-bottom: -3%;
+  
+        &:nth-child(8n+5){
+          margin-left: -12.5%;
+        }
+      }
+    }
+  }
+}
+
+// Media queries Tablette
+@media (min-width: 600px){
+  main.main{
+    .cellularItems{
+      display: flex;
+      flex-wrap: wrap;
+      max-height: 103vh;
+      margin-right: -25vw;
+      margin-top: -3vh;
+      overflow: hidden;
+      
+      >div{
+        width: 20%;
+        min-width: 150px;
+        height: auto;
+        aspect-ratio: 1/1;
+        margin-bottom: -3%;
+
+        &:nth-child(8n+5){
+          margin-left: 0;
+        }
+  
+        &:nth-child(10n+6){
+          margin-left: -10%;
+        }
+      }
+    }
   }
 }

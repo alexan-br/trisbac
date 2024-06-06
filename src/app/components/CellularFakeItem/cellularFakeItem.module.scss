@@ -12,6 +12,10 @@
         mask-position: center;
         mask-composite: exclude; 
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         &::before {
             content: "";
             position: absolute;
@@ -19,10 +23,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url(mask-border.svg);
+            background-image: url(mask-border-fake.svg);
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
-        }
+        }   
     }
 }
