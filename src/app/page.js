@@ -23,10 +23,12 @@ export default function Home() {
           }}
         />
         <CellularActiveItem
-          id="premierItem"
+          id=""
           cellular={{
-            name: "iPhone 12",
-            description: "succeeding the iPhone 11.",
+            name: "mémotri",
+            description: "Où déposer mes déchets ?",
+            iconLink: "/icons/memotri.svg",
+            nameHaveRound: "nameHaveRound",
           }}
         />
         <CellularFakeItem />
