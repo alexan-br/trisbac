@@ -1,14 +1,6 @@
 :root {
   --max-width: 1100px;
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
-  --primary: #bbdc1e;
-  --primary-dark: #374109;
- 
-  --dark: #031d2c;
-  --white: #ffffff;
-  --grey: #425561;
-  --pink: #cf1f7c;
 }
 
 * {
