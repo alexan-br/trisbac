@@ -14,7 +14,8 @@ export default function Home() {
         <CellularFakeItem />
         <CellularFakeItem />
         <CellularFakeItem />
-        <CellularItem id="premierItem" cellular={{ name: "iPhone 12", description: "succeeding the iPhone 11." }} />
+        <CellularItem id="premierItem" cellular={{ ImageLink: "/images/croix.svg", description: "Ajouter un service" }} />
+        <CellularItem id="premierItem" cellular={{ ImageLink: "/images/croix.svg", description: "Ajouter un service" }} />
         <CellularFakeItem />
         <CellularFakeItem />
         <CellularFakeItem />
@@ -45,6 +46,10 @@ export default function Home() {
         <CellularFakeItem />
         <CellularFakeItem />
       </div>
+      
+      { /*<div className={Styles.ContainerModale}>
+
+  </div> */}
     </main>
   );
 }

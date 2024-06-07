@@ -12,6 +12,13 @@
         mask-position: center;
         mask-composite: exclude; 
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10%;
+        padding: 0 10%;
+
         &::before {
             content: "";
             position: absolute;
@@ -23,6 +30,19 @@
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+        }
+
+        img{
+            width: clamp(20px, 32%, 50px);
+            height: auto;
+        }
+
+        p{
+            text-align: center;
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            color: white;
+            font-size: clamp(10px, 2.8vw, 18px);
         }
     }
 }
