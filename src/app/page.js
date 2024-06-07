@@ -15,7 +15,8 @@ export default function Home() {
         <CellularFakeItem />
         <CellularFakeItem />
         <CellularFakeItem />
-        <CellularItem id="premierItem" cellular={{ name: "iPhone 12", description: "succeeding the iPhone 11." }} />
+        <CellularItem id="premierItem" cellular={{ ImageLink:"/icons/croix.svg", description: "Ajouter un service" }} />
+        <CellularActiveItem id="deuxiemeItem" cellular={{ iconLink:"/icons/memotri.svg", name: "Mémotri", description: "Ou déposer mes dechets" }} />
         <CellularFakeItem />
         <CellularFakeItem />
         <CellularFakeItem />
