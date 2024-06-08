@@ -5,6 +5,23 @@ main.main {
   h1 {
     font-family: var(--font-primary);
   }
+
+  .ContainerIconHome {
+    position: absolute;
+    top: 6vh;
+    right: 2vh;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 18px;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
   .cellularItems {
     display: flex;
     flex-wrap: wrap;
@@ -12,11 +29,6 @@ main.main {
     margin-right: -50vw;
     margin-top: -3vh;
     overflow: hidden;
-
-    .FirstMainItem {
-      order: 1;
-      border: 23px solid #425561;
-    }
 
     > div {
       width: 33.33%;
@@ -31,7 +43,7 @@ main.main {
     }
   }
 
-  .ContainerModale{
+  .ContainerModale {
     position: absolute;
     top: 0;
     left: 0;
@@ -39,6 +51,57 @@ main.main {
     height: 100vh;
     z-index: 2;
     background-color: rebeccapurple;
+  }
+
+  .mainContainerMenuCellular {
+    position: absolute;
+    z-index: 1;
+    top: 106vh;
+    max-height: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -50vw;
+    margin-top: -3vh;
+    //height: 106vh;
+    background-color: var(--dark);
+    overflow-y: scroll;
+    transition: top 0.5s ease-out, max-height 0.5s ease-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(20px + 6vh);
+      left: 20px;
+      height: 24px;
+      width: 24px;
+      background-image: url(../../public/icons/exit-cross.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    &::after {
+      content: "Ajouter un service";
+      position: absolute;
+      top: calc(20px + 6vh);
+      left: 50vw;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 18px;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+
+    > div {
+      width: 33.33%;
+      min-width: 100px;
+      height: auto;
+      aspect-ratio: 1/1;
+      margin-bottom: -3%;
+
+      &:nth-child(6n + 4) {
+        margin-left: -16.666%;
+      }
+    }
   }
 }
 
@@ -68,12 +131,36 @@ main.main {
         }
       }
     }
+
+    .mainContainerMenuCellular {
+      margin-right: -33vw;
+
+      > div {
+        width: 25%;
+
+        &:nth-child(6n + 4) {
+          margin-left: 0;
+        }
+
+        &:nth-child(8n + 5) {
+          margin-left: -12.5%;
+        }
+      }
+    }
   }
 }
 
 // Media queries Mobile
 @media (min-width: 460px) {
   main.main {
+    .ContainerIconHome {
+      gap: 24px;
+
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
     .cellularItems {
       display: flex;
       flex-wrap: wrap;
@@ -94,12 +181,36 @@ main.main {
         }
       }
     }
+
+    .mainContainerMenuCellular {
+      > div {
+        width: 25%;
+        min-width: 150px;
+
+        &:nth-child(6n + 4) {
+          margin-left: 0;
+        }
+
+        &:nth-child(8n + 5) {
+          margin-left: -12.5%;
+        }
+      }
+    }
   }
 }
 
 // Media queries Tablette
 @media (min-width: 600px) {
   main.main {
+    .ContainerIconHome {
+      gap: 26px;
+
+      img {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
     .cellularItems {
       display: flex;
       flex-wrap: wrap;
@@ -114,6 +225,22 @@ main.main {
         height: auto;
         aspect-ratio: 1/1;
         margin-bottom: -3%;
+
+        &:nth-child(8n + 5) {
+          margin-left: 0;
+        }
+
+        &:nth-child(10n + 6) {
+          margin-left: -10%;
+        }
+      }
+    }
+
+    .mainContainerMenuCellular {
+      margin-right: -25vw;
+
+      > div {
+        width: 20%;
 
         &:nth-child(8n + 5) {
           margin-left: 0;

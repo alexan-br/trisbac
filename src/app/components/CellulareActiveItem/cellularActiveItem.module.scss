@@ -35,7 +35,17 @@
     p {
       text-transform: uppercase;
       text-align: center;
-      font-size: clamp(10px, 2.8vw, 18px);
+      font-size: clamp(10px, 2.6vw, 18px);
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .cellularActiveItem {
+    .cellularMask {
+      p {
+        font-size: clamp(10px, 2.2vw, 18px);
+      }
     }
   }
 }
