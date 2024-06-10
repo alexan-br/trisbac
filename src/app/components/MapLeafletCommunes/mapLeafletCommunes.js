@@ -22,30 +22,66 @@ const OrangeColor = "#FFEB3B";
 
 const getColor = (nom) => {
   switch (nom) {
-    case "Nantes Nord":
+    case "NANTES":
       return GreenColor;
-    case "Nantes Erdre":
-      return LightGreenColor;
-    case "Malakoff - Saint-Donatien":
+    case "REZE":
       return YellowColor;
-    case "Doulon - Bottière":
-      return OrangeColor;
-    case "Centre Ville":
-      return OrangeColor;
-    case "Ile de Nantes":
-      return OrangeColor;
-    case "Dervallières - Zola":
+    case "SAINT-HERBLAIN":
       return YellowColor;
-    case "Hauts Pavés - Saint Félix":
-      return LightGreenColor;
-    case "Breil - Barberie":
+    case "ORVAULT":
+      return OrangeColor;
+    case "SAUTRON":
+      return OrangeColor;
+    case "COUERON":
+      return OrangeColor;
+    case "BOUGUENAIS":
+      return YellowColor;
+    case "SAINT-SEBASTIEN-SUR-LOIRE":
+      return YellowColor;
+    case "VERTOU":
       return GreenColor;
-    case "Nantes Sud":
+    case "BOUAYE":
       return OrangeColor;
-    case "Bellevue - Chantenay - Sainte Anne":
+    case "LA MONTAGNE":
+      return OrangeColor;
+    case "BOUAYE":
+      return OrangeColor;
+    case "CARQUEFOU":
+      return OrangeColor;
+    case "SAINTE-LUCE-SUR-LOIRE":
+      return OrangeColor;
+    case "BASSE-GOULAINE":
+      return OrangeColor;
+    case "SAINTE-PAZANNE":
+      return OrangeColor;
+    case "MAUVES-SUR-LOIRE":
+      return OrangeColor;
+    case "COUERON":
+      return OrangeColor;
+    case "LA CHAPELLE-SUR-ERDRE":
+      return OrangeColor;
+    case "ORVAULT":
+      return OrangeColor;
+    case "SAUTRON":
+      return OrangeColor;
+    case "LE PELLERIN":
+      return OrangeColor;
+    case "SAINT-JEAN-DE-BOISEAU":
+      return OrangeColor;
+    case "INDRE":
+      return OrangeColor;
+    case "THOUARE-SUR-LOIRE":
+      return OrangeColor;
+    case "SAINT-AIGNAN-GRANDLIEU":
+      return OrangeColor;
+    case "SAINT-LEGER-LES-VIGNES":
+      return OrangeColor;
+    case "BRAINS":
+      return OrangeColor;
+    case "LES SORINIERES":
       return OrangeColor;
     default:
-      return OrangeColor; // Bleu pour les autres
+      return "#FFFFFF";
   }
 };
 
@@ -59,7 +95,7 @@ const style = (feature) => {
   };
 };
 
-const MapLeaflet = ({ geojson, onFeatureClick }) => {
+const MapLeafletCommunes = ({ geojson, onFeatureClick }) => {
   const onEachFeature = (feature, layer) => {
     layer.on({
       click: (e) => {
@@ -67,11 +103,6 @@ const MapLeaflet = ({ geojson, onFeatureClick }) => {
       },
     });
   };
-
-  // Filtrer les fonctionnalités GeoJSON par la propriété "libcom"
-  const filteredGeoJSON = geojson.features.filter((feature) => {
-    return feature.properties.libcom === "Nantes";
-  });
 
   return (
     <MapContainer
@@ -84,7 +115,7 @@ const MapLeaflet = ({ geojson, onFeatureClick }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <GeoJSON
-        data={{ type: "FeatureCollection", features: filteredGeoJSON }}
+        data={{ type: "FeatureCollection", features: geojson.features }}
         style={style}
         onEachFeature={onEachFeature}
       />
@@ -92,4 +123,4 @@ const MapLeaflet = ({ geojson, onFeatureClick }) => {
   );
 };
 
-export default MapLeaflet;
+export default MapLeafletCommunes;

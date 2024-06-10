@@ -1,19 +1,5 @@
-.ContainerMap {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh; // Vous pouvez ajuster la hauteur selon vos besoins
-}
-
 .ContainerSwitchMap {
-  position: absolute;
-  top: 60px;
   padding: 10px 10px;
-  left: 0;
-  z-index: 3;
-
   display: flex;
   width: 100%;
   gap: 10px;
@@ -33,6 +19,30 @@
       color: var(--white);
       box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.006),
         100px 100px 80px rgba(0, 0, 0, 0.07);
+    }
+  }
+}
+
+.ContainerCardsRanking {
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  .ContainerRankingEntete {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .RankingEntete {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 4px;
+      border-bottom: 1px solid black;
+
+      p {
+        font-size: 12px;
+      }
     }
   }
 }
