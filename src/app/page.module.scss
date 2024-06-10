@@ -1,6 +1,7 @@
 main.main {
   position: relative;
   background-color: #031d2c;
+  overflow: hidden;
 
   h1 {
     font-family: var(--font-primary);
@@ -102,6 +103,45 @@ main.main {
         margin-left: -16.666%;
       }
     }
+  }
+}
+
+.infoBanner {
+  background-color: #f2f2f2;
+  text-align: left;
+  border: 1px solid #c8c8c8;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 14px;
+  font-size: 0.9em;
+  h4 {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .infoCta {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.playButtonContainer {
+  padding: 0 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 30px;
+  width: 100%;
+  .playButton {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--pink);
+    border: none;
+    color: var(--white);
+    padding: 15px 0;
+    border-radius: 50px;
   }
 }
 

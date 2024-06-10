@@ -8,6 +8,7 @@ import CellularFakeItem from "./components/CellularFakeItem/cellularFakeItem";
 import CellularMenuItem from "./components/CellularMenuItem/cellularMenuItem";
 import HomeMenu from "./components/HomeMenu/homeMenu";
 import Styles from "./page.module.scss";
+import HomeModale from "./components/HomeModale/homeModale";
 
 export default function Home() {
   const tab_available_items_under_300px = [
@@ -111,10 +112,29 @@ export default function Home() {
       }
     }
 
+    function OpenModaleOnClick() {
+      const activeItems = document.querySelectorAll(".CellularActiveItem");
+      activeItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const id = item.getAttribute("id");
+          const modale = document.getElementById("modale" + id);
+          console.log(modale);
+          modale.style.top = "5vh";
+          modale.style.maxHeight = "103vh";
+        });
+      });
+    }
+
     ToggleMenu();
     SetPositionMainsItems();
+    OpenModaleOnClick();
   }, []);
 
+  const handleCrossCloseModale = (id) => {
+    const modale = document.getElementById(id);
+    modale.style.top = "106vh";
+    modale.style.maxHeight = "0px";
+  };
   return (
     <main className={Styles.main}>
       <div className={Styles.ContainerIconHome}>
@@ -178,10 +198,10 @@ export default function Home() {
           }}
         />
         <CellularActiveItem
-          id="deuxiemeItem"
+          id="game"
           className="CellularActiveItem"
           cellular={{
-            iconLink: "/icons/memotri.svg",
+            iconLink: "/icons/controller.svg",
             name: "Mémotri",
             description: "Ou déposer mes dechets",
           }}
@@ -289,6 +309,34 @@ export default function Home() {
         <CellularFakeItem hasBackground={false} />
       </div>
       {/*<div className={Styles.ContainerModale}></div> */}
+      <HomeModale
+        id="modalegame"
+        icon="/icons/controller.svg"
+        modale={{
+          name: "Jeu du tri",
+          desc: "Informations et jeu",
+        }}
+        exitModale={handleCrossCloseModale}
+      >
+        <p>
+          Apprenez à trier de façon ludique avec le jeu du tri. Parcourez les
+          quartiers de Nantes et nettoyez les rues en choisissant les bonnes
+          poubelles.
+        </p>
+        <div className={Styles.infoBanner}>
+          <h4>Informations</h4>
+          <div className={Styles.infoCta}>
+            <p>
+              Retrouvez toutes les informations sur le tri des déchets, de façon
+              ludique.
+            </p>
+            <img src="/icons/arrow.svg" />
+          </div>
+        </div>
+        <div className={Styles.playButtonContainer}>
+          <button className={Styles.playButton}>Jouer</button>
+        </div>
+      </HomeModale>
     </main>
   );
 }
