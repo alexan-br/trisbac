@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     function SetPositionMainsItems() {
-      // Gere la position des items en fonction de la taille de l'écran
+      // Gere la position des items de la home en fonction de la taille de l'écran
 
       const mainContainer = document.getElementById("mainContainerCellular");
       let tab_available_items = [];
@@ -87,6 +87,7 @@ export default function Home() {
     }
 
     function ToggleMenu() {
+      // Gestion ouverture et fermeture du menu
       const mainContainerMenuCellular = document.getElementById(
         "mainContainerMenuCellular"
       );
