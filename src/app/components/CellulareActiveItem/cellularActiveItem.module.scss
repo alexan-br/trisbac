@@ -32,10 +32,16 @@
       color: var(--primary);
       background-color: var(--primary-dark);
     }
+    .nameHaveRound:empty {
+      display: none;
+    }
     p {
       text-transform: uppercase;
       text-align: center;
       font-size: clamp(10px, 2.6vw, 18px);
+    }
+    p:empty {
+      display: none;
     }
   }
 }
