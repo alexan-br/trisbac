@@ -1,0 +1,83 @@
+.Card {
+  display: flex;
+  align-items: center;
+  max-width: calc(100vw - 20px);
+  border: 2px solid grey;
+  padding-left: 8px;
+  gap: 8px;
+
+  &.Green {
+    border-color: rebeccapurple;
+
+    .ValueWeight {
+      svg {
+        path {
+          fill: rebeccapurple;
+        }
+      }
+      .ContainerValueWeight {
+        background-color: rebeccapurple;
+      }
+    }
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .Content {
+    width: calc(88% - 100px);
+    margin-right: -20px;
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+
+    .ContainerTitle {
+      width: 100%;
+      h2 {
+        font-size: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    h3 {
+      font-size: 14px;
+      color: #989898;
+    }
+  }
+
+  .ValueWeight {
+    display: flex;
+    margin-left: auto;
+    overflow: hidden;
+
+    svg {
+      margin-right: -7px;
+      margin-top: -4px;
+      scale: 1.05;
+      min-width: 45px;
+      height: 55px;
+      path {
+        fill: grey;
+      }
+    }
+
+    .ContainerValueWeight {
+      background-color: grey;
+      width: clamp(60px, 6vw, 90px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+
+      p {
+        color: black;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}
