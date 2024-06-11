@@ -5,6 +5,7 @@ import TutoCard from "../components/TutoCard/tutoCard";
 import GameModale from "../components/GameModale/gameModale";
 import Styles from "./game.module.scss";
 import GameResultModale from "../components/GameResultModale/gameResultModale";
+import Confetti from "../components/Confetti/Confetti";
 import Link from "next/link";
 
 export default function Game() {
@@ -85,8 +86,13 @@ export default function Game() {
   useEffect(() => {}, [isOverlayVisible]);
 
   const handleOverlayOpen = () => {
-    document.getElementById("OverlayExplication").style.display = "flex";
-    setOverlayVisible(true);
+    if (isOverlayVisible) {
+      document.getElementById("OverlayExplication").style.display = "none";
+      setOverlayVisible(false);
+    } else {
+      document.getElementById("OverlayExplication").style.display = "flex";
+      setOverlayVisible(true);
+    }
   };
 
   const handleOverlayClose = () => {
@@ -116,7 +122,7 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
-      {PlayerScore[0].nombreObjectJoue === 10 ? (
+      {PlayerScore[0].nombreObjectJoue === 4 ? (
         <GameResultModale
           modale={{ name: "Félicitations ! Tu as nettoyé toute la rue !" }}
         >
@@ -134,6 +140,7 @@ export default function Game() {
             <div className={Styles.scoreResult}>
               {PlayerScore[0].nombreObjectValide / 2}/5
             </div>
+            <Confetti />
           </div>
           <div className={Styles.resultButtonContainer}>
             <Link className={`${Styles.ctaReplay} ${Styles.cta}`} href="/game">
@@ -145,7 +152,7 @@ export default function Game() {
           </div>
         </GameResultModale>
       ) : null}
-      <TutoCard />
+      {/* <TutoCard /> */}
       <div className={Styles.GameContainer}>
         <Image
           src="/icons/exit-cross.svg"
