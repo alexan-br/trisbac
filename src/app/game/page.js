@@ -4,6 +4,8 @@ import Image from "next/image";
 import TutoCard from "../components/TutoCard/tutoCard";
 import GameModale from "../components/GameModale/gameModale";
 import Styles from "./game.module.scss";
+import GameResultModale from "../components/GameResultModale/gameResultModale";
+import Link from "next/link";
 
 export default function Game() {
   const tabMouchoirUrl = [
@@ -110,6 +112,31 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
+      <GameResultModale
+        modale={{ name: "Félicitations ! Tu as nettoyé toute la rue !" }}
+      >
+        <div className={Styles.infoBanner}>
+          <h4>Informations</h4>
+          <div className={Styles.infoCta}>
+            <p>
+              Retrouvez toutes les informations sur le tri des déchets, de façon
+              ludique.
+            </p>
+            <img src="/icons/arrow.svg" />
+          </div>
+        </div>
+        <div className={Styles.scoreContainer}>
+          <div className={Styles.scoreResult}>/5</div>
+        </div>
+        <div className={Styles.resultButtonContainer}>
+          <Link className={`${Styles.ctaReplay} ${Styles.cta}`} href="/game">
+            Rejouer
+          </Link>
+          <Link className={`${Styles.ctaFinish} ${Styles.cta}`} href="/">
+            Terminer
+          </Link>
+        </div>
+      </GameResultModale>
       <TutoCard />
       <div className={Styles.GameContainer}>
         <Image
