@@ -1,7 +1,241 @@
 .Main {
+  position: relative;
+  height: 100vh;
+
+  .CrossExit {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .MascotteContainer {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 1;
+    height: fit-content;
+
+    .Mascotte {
+      width: clamp(60px, 22vw, 180px);
+      height: auto;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .OverlayExplication {
+      position: absolute;
+      right: 10px;
+      width: 60vw;
+      min-width: 320px;
+      max-width: 500px;
+      background-color: white;
+      transform: translate(0px, 20px);
+      padding: 20px;
+      box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.008),
+        6.7px 6.7px 5.3px rgba(0, 0, 0, 0.009),
+        12.5px 12.5px 10px rgba(0, 0, 0, 0.011),
+        22.3px 22.3px 17.9px rgba(0, 0, 0, 0.016),
+        41.8px 41.8px 33.4px rgba(0, 0, 0, 0.026),
+        100px 100px 80px rgba(0, 0, 0, 0.04);
+
+      z-index: 3;
+      border-radius: 8px;
+      display: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: 100%;
+        right: clamp(
+          30px,
+          9vw,
+          60px
+        ); // offset should move with padding of parent
+        border: 0.75rem solid transparent;
+        border-top: none;
+
+        border-bottom-color: #fff;
+        filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
+      }
+
+      .OverlayExplicationContent {
+        display: flex;
+        flex-direction: column;
+
+        font-family: var(--font-primary);
+        font-size: clamp(12px, 4vw, 16px);
+        font-weight: 500;
+
+        button {
+          background-color: transparent;
+          border: none;
+          color: #cf1f7c;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-family: var(--font-primary);
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  .GameContent {
+    position: absolute;
+    width: 100vw;
+    height: 98vh;
+    top: 0;
+    left: 0;
+
+    .GameObjectContainer {
+      position: absolute;
+      width: fit-content;
+
+      img {
+        object-fit: contain;
+        height: 100%;
+        width: auto;
+      }
+
+      &.Bouteille_plastique {
+        bottom: 11%;
+        left: 20%;
+        height: 10vh;
+        transform: rotate(-16deg);
+      }
+
+      &.Pomme_aliment {
+        bottom: 24%;
+        left: 40%;
+        height: 5vh;
+        transform: rotate(24deg);
+      }
+
+      &.Bocal_verre {
+        bottom: 20%;
+        right: 18%;
+        height: 9vh;
+        transform: rotate(0deg);
+      }
+
+      &.le_papier {
+        bottom: 12%;
+        right: 26%;
+        height: 4vh;
+        transform: rotate(-2deg);
+      }
+
+      &.mouchoirs {
+        top: 30%;
+        right: 22%;
+        height: 5vh;
+        transform: rotate(20deg);
+      }
+    }
+  }
+
   .BgImage {
     width: 100vw;
-    height: 90vh;
+    height: 98vh;
     object-fit: cover;
+  }
+
+  .GameBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: white;
+
+    .GameBarSingleContentContainer {
+      border-radius: 100%;
+      border: 3px solid #bbdc1e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: clamp(30px, 16%, 80px);
+      aspect-ratio: 1/1;
+
+      &.isActif {
+        img {
+          filter: brightness(1);
+        }
+      }
+
+      img {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+        filter: brightness(0);
+      }
+    }
+  }
+
+  .ModaleDechet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    z-index: 2;
+
+    .ModaleContent {
+      position: relative;
+      background-color: white;
+      padding: 30px 20px 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        text-align: center;
+      }
+
+      img.CrossExitBlack {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 20px;
+        height: 20px;
+      }
+
+      img {
+        object-fit: contain;
+      }
+
+      .ModaleContentPoubellesContainer {
+        display: flex;
+        width: 100%;
+
+        .ModaleContentSinglePoubelle {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          p {
+            color: #374109;
+            font-weight: 600;
+          }
+        }
+      }
+    }
   }
 }
