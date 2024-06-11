@@ -1,0 +1,96 @@
+.tutoCardOverlay {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  // max-height: 0px !important;
+  height: 100vh;
+  z-index: 5;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .tutoCard {
+    background-color: var(--white);
+    max-width: 95%;
+    width: 100%;
+    border-radius: 10px;
+    // overflow: hidden;
+    .exitCrossModale {
+      margin-top: 15px;
+      margin-left: 15px;
+      path {
+        fill: var(--dark);
+      }
+    }
+    .arrowBack {
+      margin-top: 15px;
+      margin-left: 15px;
+      path {
+        fill: var(--dark);
+      }
+    }
+    .carouselList::-webkit-scrollbar {
+      display: none;
+    }
+    .carouselList {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      flex: none;
+      transition: transform 0.5s ease;
+      overflow: auto;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      .carouselItem {
+        min-width: 400px; // Ensure the width matches the scroll distance in JavaScript
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        box-sizing: border-box;
+        scroll-snap-align: center;
+        flex: none;
+        p {
+          margin-top: 20px;
+          font-weight: 700;
+          font-size: 1.2em;
+        }
+      }
+    }
+    .stepNav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px;
+      > * {
+        flex-basis: 100%;
+      }
+      .indicators {
+        display: flex;
+        justify-content: center;
+
+        .indicator {
+          width: 10px;
+          height: 10px;
+          margin: 0 5px;
+          background-color: #cf1f7c30;
+          border-radius: 50%;
+          transition: background-color 0.3s;
+          &.active {
+            background-color: var(--pink);
+          }
+        }
+      }
+      .nextButton {
+        background-color: transparent;
+        font-family: var(--font-primary);
+        border: none;
+        color: var(--pink);
+        font-size: 1.2em;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
