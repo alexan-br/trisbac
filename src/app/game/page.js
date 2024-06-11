@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import TutoCard from "../components/TutoCard/tutoCard";
 import Styles from "./game.module.scss";
+import TutoCard from "../components/TutoCard/tutoCard";
 
 export default function Game() {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
