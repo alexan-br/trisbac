@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+
+import TutoCard from "../components/TutoCard/tutoCard";
 import Styles from "./game.module.scss";
 
 export default function Game() {
@@ -45,6 +47,7 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
+      <TutoCard />
       <div className={Styles.GameContainer}>
         <Image
           src="/icons/exit-cross.svg"

@@ -23,6 +23,7 @@
       aspect-ratio: 1/1;
       object-fit: contain;
       mix-blend-mode: multiply;
+      background-blend-mode: multiply;
     }
 
     .OverlayExplication {
@@ -197,7 +198,10 @@
 
     .ModaleContent {
       position: relative;
-      background-color: white;
+      background-color: var(--white);
+      max-width: 95%;
+      width: 95%;
+      border-radius: 10px;
       padding: 30px 20px 10px;
 
       display: flex;
@@ -210,8 +214,8 @@
 
       img.CrossExitBlack {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 20px;
+        left: 20px;
         width: 20px;
         height: 20px;
       }
