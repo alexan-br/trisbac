@@ -62,6 +62,8 @@ export default function Game() {
       updatedScore[0].nombreObjectJoue += 1;
       updatedScore[0].nombreObjectValide += 1;
       document.getElementById(idObject).style.display = "none";
+      var containerImage = document.getElementById(`IconDechet${idObject}`);
+      containerImage.firstChild.style.filter = "brightness(1)";
       return updatedScore;
     });
   };
@@ -72,6 +74,8 @@ export default function Game() {
       updatedScore[0].nombreObjectJoue += 1;
       updatedScore[0].nombreObjectValide += 0;
       document.getElementById(idObject).style.display = "none";
+      var containerImage = document.getElementById(`IconDechet${idObject}`);
+      containerImage.firstChild.style.filter = "brightness(1)";
       return updatedScore;
     });
   };
@@ -112,31 +116,35 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
-      <GameResultModale
-        modale={{ name: "Félicitations ! Tu as nettoyé toute la rue !" }}
-      >
-        <div className={Styles.infoBanner}>
-          <h4>Informations</h4>
-          <div className={Styles.infoCta}>
-            <p>
-              Retrouvez toutes les informations sur le tri des déchets, de façon
-              ludique.
-            </p>
-            <img src="/icons/arrow.svg" />
+      {PlayerScore[0].nombreObjectJoue === 10 ? (
+        <GameResultModale
+          modale={{ name: "Félicitations ! Tu as nettoyé toute la rue !" }}
+        >
+          <div className={Styles.infoBanner}>
+            <h4>Informations</h4>
+            <div className={Styles.infoCta}>
+              <p>
+                Retrouvez toutes les informations sur le tri des déchets, de
+                façon ludique.
+              </p>
+              <img src="/icons/arrow.svg" />
+            </div>
           </div>
-        </div>
-        <div className={Styles.scoreContainer}>
-          <div className={Styles.scoreResult}>/5</div>
-        </div>
-        <div className={Styles.resultButtonContainer}>
-          <Link className={`${Styles.ctaReplay} ${Styles.cta}`} href="/game">
-            Rejouer
-          </Link>
-          <Link className={`${Styles.ctaFinish} ${Styles.cta}`} href="/">
-            Terminer
-          </Link>
-        </div>
-      </GameResultModale>
+          <div className={Styles.scoreContainer}>
+            <div className={Styles.scoreResult}>
+              {PlayerScore[0].nombreObjectValide / 2}/5
+            </div>
+          </div>
+          <div className={Styles.resultButtonContainer}>
+            <Link className={`${Styles.ctaReplay} ${Styles.cta}`} href="/game">
+              Rejouer
+            </Link>
+            <Link className={`${Styles.ctaFinish} ${Styles.cta}`} href="/">
+              Terminer
+            </Link>
+          </div>
+        </GameResultModale>
+      ) : null}
       <TutoCard />
       <div className={Styles.GameContainer}>
         <Image
@@ -237,7 +245,10 @@ export default function Game() {
       </div>
 
       <div className={Styles.GameBar}>
-        <div className={Styles.GameBarSingleContentContainer}>
+        <div
+          className={Styles.GameBarSingleContentContainer}
+          id="Bouteille_plastique"
+        >
           <Image
             src="/images/jeu/Bouteille_plastique.png"
             width={50}
@@ -245,7 +256,10 @@ export default function Game() {
             alt="Game"
           />
         </div>
-        <div className={Styles.GameBarSingleContentContainer}>
+        <div
+          className={Styles.GameBarSingleContentContainer}
+          id="IconDechetBocal_verre"
+        >
           <Image
             src="/images/jeu/Bocal_verre.png"
             width={50}
@@ -253,7 +267,10 @@ export default function Game() {
             alt="Game"
           />
         </div>
-        <div className={Styles.GameBarSingleContentContainer}>
+        <div
+          className={Styles.GameBarSingleContentContainer}
+          id="IconDechetPomme_aliment"
+        >
           <Image
             src="/images/jeu/Pomme_aliment.png"
             width={50}
@@ -261,7 +278,10 @@ export default function Game() {
             alt="Game"
           />
         </div>
-        <div className={Styles.GameBarSingleContentContainer}>
+        <div
+          className={Styles.GameBarSingleContentContainer}
+          id="IconDechetle_papier"
+        >
           <Image
             src="/images/jeu/le-papier.png"
             width={50}
@@ -269,7 +289,10 @@ export default function Game() {
             alt="Game"
           />
         </div>
-        <div className={Styles.GameBarSingleContentContainer}>
+        <div
+          className={Styles.GameBarSingleContentContainer}
+          id="IconDechetmouchoirs"
+        >
           <Image
             src="/images/jeu/mouchoirs.png"
             width={50}
