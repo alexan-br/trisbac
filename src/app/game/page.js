@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Styles from "./game.module.scss";
+import TutoCard from "../components/TutoCard/tutoCard";
 
 export default function Game() {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
@@ -45,6 +46,7 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
+      <TutoCard />
       <div className={Styles.GameContainer}>
         <Image
           src="/icons/exit-cross.svg"
