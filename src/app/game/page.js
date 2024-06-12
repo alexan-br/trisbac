@@ -7,8 +7,11 @@ import Styles from "./game.module.scss";
 import GameResultModale from "../components/GameResultModale/gameResultModale";
 import Confetti from "../components/Confetti/Confetti";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 export default function Game() {
+  const [isFirstTime, setIsFirstTime] = useState(null);
+
   const tabMouchoirUrl = [
     {
       urlImage: "/images/jeu/mouchoirs.png",
@@ -83,8 +86,16 @@ export default function Game() {
 
   const [isOverlayVisible, setOverlayVisible] = useState(false);
 
-  useEffect(() => {}, [isOverlayVisible]);
+  useEffect(() => {
+    // Vérifier la valeur du cookie et mettre à jour l'état
+    const firstTime = Cookies.get("FirstTime");
+    setIsFirstTime(firstTime !== "false");
+  }, [isOverlayVisible]);
 
+  if (isFirstTime === null) {
+    // Afficher un indicateur de chargement ou rien en attendant la vérification du cookie
+    return null; // ou un spinner de chargement si nécessaire
+  }
   const handleOverlayOpen = () => {
     if (isOverlayVisible) {
       document.getElementById("OverlayExplication").style.display = "none";
@@ -152,7 +163,7 @@ export default function Game() {
           </div>
         </GameResultModale>
       ) : null}
-      {/* <TutoCard /> */}
+      {isFirstTime ? <TutoCard /> : null}
       <div className={Styles.GameContainer}>
         <Image
           src="/icons/exit-cross.svg"
@@ -250,7 +261,6 @@ export default function Game() {
           alt="Game"
         />
       </div>
-
       <div className={Styles.GameBar}>
         <div
           className={Styles.GameBarSingleContentContainer}
@@ -308,7 +318,6 @@ export default function Game() {
           />
         </div>
       </div>
-
       <GameModale
         tabInfos={tabMouchoirUrl}
         id="GameModalemouchoirs"
