@@ -5,9 +5,14 @@
   max-height: 0px !important;
   z-index: 5;
   transition: all 0.3s ease-in-out;
-  .exitCrossModale {
-    margin-bottom: 50px;
-    margin-left: 15px;
+  .exitCrossModaleContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .exitCrossModale {
+      margin-bottom: 50px;
+      margin-right: 15px;
+    }
   }
   .modaleContentContainer {
     background-color: var(--white);

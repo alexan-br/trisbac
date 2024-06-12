@@ -56,6 +56,17 @@ export default function Game() {
     },
   ];
 
+  const tabBouteillePlastiqueUrl = [
+    {
+      urlImage: "/images/jeu/Bouteille_plastique.png",
+      nameObject: "Bouteille en plastique",
+      urlValidePoubelle: "/images/jeu/Poubelle_jaune.png",
+      nameValidePoubelle: "Poubelle jaune",
+      urlInvalidePoubelle: "/images/jeu/Bac_a_verre.png",
+      nameInvalidePoubelle: "Colonne à verre",
+    },
+  ];
+
   const [PlayerScore, setPlayerScore] = useState([
     { nombreObjectJoue: 0, nombreObjectValide: 0 },
   ]);
@@ -126,6 +137,10 @@ export default function Game() {
       case "Bocal_verre":
         document.getElementById("GameModaleBocal_verre").style.display = "flex";
         break;
+      case "Bouteille_plastique":
+        document.getElementById("GameModaleBouteille_plastique").style.display =
+          "flex";
+        break;
       default:
         break;
     }
@@ -133,7 +148,7 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
-      {PlayerScore[0].nombreObjectJoue === 4 ? (
+      {PlayerScore[0].nombreObjectJoue === 10 ? (
         <GameResultModale
           modale={{ name: "Félicitations ! Tu as nettoyé toute la rue !" }}
         >
@@ -154,7 +169,13 @@ export default function Game() {
             {PlayerScore[0].nombreObjectValide <= 6 ? <Confetti /> : null}
           </div>
           <div className={Styles.resultButtonContainer}>
-            <Link className={`${Styles.ctaReplay} ${Styles.cta}`} href="/game">
+            <Link
+              className={`${Styles.ctaReplay} ${Styles.cta}`}
+              href="/game"
+              onClick={() => {
+                mutate();
+              }}
+            >
               Rejouer
             </Link>
             <Link className={`${Styles.ctaFinish} ${Styles.cta}`} href="/">
@@ -264,7 +285,7 @@ export default function Game() {
       <div className={Styles.GameBar}>
         <div
           className={Styles.GameBarSingleContentContainer}
-          id="Bouteille_plastique"
+          id="IconDechetBouteille_plastique"
         >
           <Image
             src="/images/jeu/Bouteille_plastique.png"
@@ -341,6 +362,14 @@ export default function Game() {
         id="GameModaleBocal_verre"
         updatePlayerScoreWin={() => updatePlayerScoreWin("Bocal_verre")}
         updatePlayerScoreLose={() => updatePlayerScoreLose("Bocal_verre")}
+      />
+      <GameModale
+        tabInfos={tabBouteillePlastiqueUrl}
+        id="GameModaleBouteille_plastique"
+        updatePlayerScoreWin={() => updatePlayerScoreWin("Bouteille_plastique")}
+        updatePlayerScoreLose={() =>
+          updatePlayerScoreLose("Bouteille_plastique")
+        }
       />
     </main>
   );
