@@ -39,8 +39,10 @@
       margin-top: -50px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 30px;
       text-align: center;
+      max-height: 76vh;
+      overflow-y: auto;
       & > p:nth-child(2) {
         text-align: left;
         padding: 0 15px;
