@@ -2,6 +2,7 @@
 
 import React from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { getColorQuartier } from "@/app/utils/colorUtils";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -15,43 +16,9 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-const GreenColor = "#8BC34A";
-const LightGreenColor = "#C5E1A5";
-const YellowColor = "#FFF176";
-const OrangeColor = "#FFEB3B";
-
-const getColor = (nom) => {
-  switch (nom) {
-    case "Nantes Nord":
-      return GreenColor;
-    case "Nantes Erdre":
-      return LightGreenColor;
-    case "Malakoff - Saint-Donatien":
-      return YellowColor;
-    case "Doulon - Bottière":
-      return OrangeColor;
-    case "Centre Ville":
-      return OrangeColor;
-    case "Ile de Nantes":
-      return OrangeColor;
-    case "Dervallières - Zola":
-      return YellowColor;
-    case "Hauts Pavés - Saint Félix":
-      return LightGreenColor;
-    case "Breil - Barberie":
-      return GreenColor;
-    case "Nantes Sud":
-      return OrangeColor;
-    case "Bellevue - Chantenay - Sainte Anne":
-      return OrangeColor;
-    default:
-      return OrangeColor; // Bleu pour les autres
-  }
-};
-
 const style = (feature) => {
   return {
-    fillColor: getColor(feature.properties.nom),
+    fillColor: getColorQuartier(feature.properties.nom),
     weight: 2,
     opacity: 1,
     color: "#83859b",
@@ -63,7 +30,8 @@ const MapLeaflet = ({ geojson, onFeatureClick }) => {
   const onEachFeature = (feature, layer) => {
     layer.on({
       click: (e) => {
-        onFeatureClick(feature, e);
+        const color = getColorQuartier(feature.properties.nom); // Récupérez la couleur ici
+        onFeatureClick(feature, color, e); // Passez la couleur au parent
       },
     });
   };
