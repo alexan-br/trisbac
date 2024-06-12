@@ -1,0 +1,94 @@
+.rulesContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 16px;
+
+  .ExitCross {
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
+  }
+
+  h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(18px, 5vw, 28px);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 32px auto 16px auto;
+    text-align: center;
+  }
+
+  .Intro {
+    padding-bottom: 32px;
+    font-size: clamp(16px, 2.5vw, 20px);
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    li {
+      list-style: none;
+
+      & > p {
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      & > div {
+        display: flex;
+        flex-wrap: wrap;
+        border: 3px solid black;
+        border-radius: 10px;
+        overflow: hidden;
+        max-width: 500px;
+
+        & > img {
+          padding: 18px;
+          width: 50%;
+          height: 130px;
+          object-fit: contain;
+        }
+
+        & > div {
+          padding: 18px 18px 18px 18px;
+          width: 50%;
+          height: 130px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+
+          p {
+            text-align: center;
+            text-transform: uppercase;
+            color: black;
+            font-weight: 600;
+          }
+
+          img {
+            height: calc(100% - 18px);
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+
+  .TextEnd {
+    margin: 32px 0 16px 0;
+  }
+
+  .ButtonEnd {
+    color: white;
+    width: 100%;
+    border-radius: 30px;
+    background-color: var(--pink);
+    padding: 14px;
+    text-align: center;
+  }
+}
