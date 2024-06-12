@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
+import Cookies from "js-cookie";
 import Style from "./tutocard.module.scss";
 
 const steps = [
@@ -50,6 +51,7 @@ export default function TutoCard() {
       listRef.current.scrollBy({ left: containerWidth, behavior: "smooth" });
     } else {
       closeComponent();
+      Cookies.set("FirstTime", "false");
     }
   };
 
@@ -61,6 +63,7 @@ export default function TutoCard() {
 
   const closeComponent = () => {
     setIsOpen(false);
+    Cookies.set("FirstTime", "false");
   };
 
   const currentStep = Math.round(scrollPosition / containerWidth);

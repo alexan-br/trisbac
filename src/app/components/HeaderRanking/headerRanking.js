@@ -15,7 +15,7 @@ const HeaderRanking = ({ urlPage }) => {
           alt="Arrow"
         ></Image>
       </Link>
-      <h1>Vie Pratique</h1>
+      <h1>Carte</h1>
     </header>
   );
 };
