@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Styles from "./confetti.module.scss";
+import Styles from "./Confetti.module.scss";
 
 const Confetti = () => {
   useEffect(() => {
