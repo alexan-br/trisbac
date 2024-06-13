@@ -1,37 +1,25 @@
+"use client";
+
 import React, { useState } from "react";
 import Autosuggest from "react-autosuggest";
 
-const SearchBar = ({ onSuggestionSelected }) => {
+const SearchBarQuartier = ({ onSuggestionSelected }) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
   // Liste de mots pour l'autocomplétion
   const wordList = [
-    "NANTES",
-    "REZE",
-    "SAINT-HERBLAIN",
-    "ORVAULT",
-    "SAUTRON",
-    "COUERON",
-    "BOUGUENAIS",
-    "SAINT-SEBASTIEN-SUR-LOIRE",
-    "VERTOU",
-    "BOUAYE",
-    "LA MONTAGNE",
-    "CARQUEFOU",
-    "SAINTE-LUCE-SUR-LOIRE",
-    "BASSE-GOULAINE",
-    "SAINTE-PAZANNE",
-    "MAUVES-SUR-LOIRE",
-    "LA CHAPELLE-SUR-ERDRE",
-    "LE PELLERIN",
-    "SAINT-JEAN-DE-BOISEAU",
-    "INDRE",
-    "THOUARE-SUR-LOIRE",
-    "SAINT-AIGNAN-GRANDLIEU",
-    "SAINT-LEGER-LES-VIGNES",
-    "BRAINS",
-    "LES SORINIERES",
+    "Nantes Nord",
+    "Nantes Erdre",
+    "Malakoff - Saint-Donatien",
+    "Doulon - Bottière",
+    "Centre Ville",
+    "Ile de Nantes",
+    "Dervallières - Zola",
+    "Hauts Pavés - Saint Félix",
+    "Breil - Barberie",
+    "Nantes Sud",
+    "Bellevue - Chantenay - Sainte Anne",
   ];
 
   // Fonction pour filtrer les suggestions
@@ -58,7 +46,7 @@ const SearchBar = ({ onSuggestionSelected }) => {
   };
 
   const inputProps = {
-    placeholder: "Rechercher une commune",
+    placeholder: "Rechercher un quartier",
     value,
     onChange: onChange,
   };
@@ -73,8 +61,8 @@ const SearchBar = ({ onSuggestionSelected }) => {
       renderSuggestion={(suggestion) => <div>{suggestion}</div>}
       inputProps={inputProps}
       renderSuggestionsContainer={({ containerProps, children }) => {
-        if (value.length > 0 && suggestions.length === 0) {
-          return <></>; // Retourner un fragment vide pour ne rien afficher
+        if (value.length > 0 && (!children || children.length === 0)) {
+          return <></>;
         }
         return <div {...containerProps}>{children}</div>;
       }}
@@ -82,4 +70,4 @@ const SearchBar = ({ onSuggestionSelected }) => {
   );
 };
 
-export default SearchBar;
+export default SearchBarQuartier;

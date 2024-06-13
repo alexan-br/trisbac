@@ -37,6 +37,8 @@ a {
   justify-content: center;
   flex-direction: column;
   padding: 0 10px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .react-autosuggest__container input {

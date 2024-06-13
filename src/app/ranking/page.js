@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getColor, getColorQuartier } from "../utils/colorUtils"; // Importez la fonction getColor
 import HeaderRanking from "../components/HeaderRanking/headerRanking";
 import SearchBar from "../components/SearchBar/searchBar";
+import SearchBarQuartier from "../components/SearchBarQuartier/searchBarQuartier";
 import Link from "next/link";
 
 import Styles from "./ranking.module.scss";
@@ -46,6 +47,19 @@ const Ranking = () => {
   const [populationZone, setpopulationZone] = useState(null);
   const [selectedYear, setSelectedYear] = useState(2024); // État pour l'année sélectionnée
   const [isModaleOpen, setIsModaleOpen] = useState(false);
+  const [EnvoieNomSearchBarCommunes, setEnvoieNomSearchBarCommunes] =
+    useState("");
+  const [EnvoieNomSearchBarQuartier, setEnvoieNomSearchBarQuartier] =
+    useState("");
+
+  const handleSuggestionSelected = (suggestion) => {
+    console.log(`Suggestion sélectionnée Main Map : ${suggestion}`);
+    if (showCommunes) {
+      setEnvoieNomSearchBarCommunes(suggestion);
+    } else {
+      setEnvoieNomSearchBarQuartier(suggestion);
+    }
+  };
 
   const ormData = [
     {
@@ -254,17 +268,25 @@ const Ranking = () => {
           Quartier
         </button>
       </div>
-      <SearchBar />
-
+      {showCommunes ? (
+        <SearchBar onSuggestionSelected={handleSuggestionSelected} />
+      ) : (
+        <SearchBarQuartier onSuggestionSelected={handleSuggestionSelected} />
+      )}
       <div className={Styles.ContainerMap}>
         {showCommunes && geojsonCommunes && (
           <MapLeafletCommunes
             geojson={geojsonCommunes}
             onFeatureClick={handleFeatureClick}
+            selectedZoneName={EnvoieNomSearchBarCommunes}
           />
         )}
         {!showCommunes && geojson && (
-          <MapLeaflet geojson={geojson} onFeatureClick={handleFeatureClick} />
+          <MapLeaflet
+            geojson={geojson}
+            onFeatureClick={handleFeatureClick}
+            selectedZoneName={EnvoieNomSearchBarQuartier}
+          />
         )}
       </div>
       {InfosName !== "Selectionnez une zone" ? (
