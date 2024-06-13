@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -14,24 +15,41 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-const style = (feature) => {
-  return {
-    fillColor: getColor(feature.properties.nom),
-    weight: 2,
-    opacity: 1,
-    color: "#83859b",
-    fillOpacity: 0.8,
-  };
-};
-
 const MapLeafletCommunes = ({ geojson, onFeatureClick }) => {
+  const [clickedZoneId, setClickedZoneId] = useState(null);
+  const [selectedZoneId, setSelectedZoneId] = useState(null);
+  const [colorZone, setColorZone] = useState("#83859b"); // État pour stocker la couleur
+
   const onEachFeature = (feature, layer) => {
     layer.on({
       click: (e) => {
-        const color = getColor(feature.properties.nom); // Récupérez la couleur ici
-        onFeatureClick(feature, color, e); // Passez la couleur au parent
+        setClickedZoneId(feature.properties.nom);
+        const color = getColor(feature.properties.nom);
+        setColorZone(color); // Mettez à jour la couleur ici
+        onFeatureClick(feature, color, e);
       },
     });
+  };
+
+  const style = (feature) => {
+    return {
+      fillColor: getColor(feature.properties.nom),
+      weight: 2,
+      opacity: 1,
+      color: "#00000050", // Contour en rouge si la zone est cliquée, sinon blanc
+      fillOpacity: 0.8,
+    };
+  };
+
+  const styleUpper = (feature) => {
+    return {
+      fillColor: "transparent",
+      weight: 2,
+      opacity: 1,
+      color:
+        feature.properties.nom === clickedZoneId ? "#ff0000" : "transparent", // Contour en rouge si la zone est cliquée, sinon blanc
+      fillOpacity: 1,
+    };
   };
 
   return (
@@ -47,6 +65,11 @@ const MapLeafletCommunes = ({ geojson, onFeatureClick }) => {
       <GeoJSON
         data={{ type: "FeatureCollection", features: geojson.features }}
         style={style}
+        onEachFeature={onEachFeature}
+      />
+      <GeoJSON
+        data={{ type: "FeatureCollection", features: geojson.features }}
+        style={styleUpper}
         onEachFeature={onEachFeature}
       />
     </MapContainer>

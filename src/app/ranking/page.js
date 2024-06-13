@@ -5,6 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getColor, getColorQuartier } from "../utils/colorUtils"; // Importez la fonction getColor
 import HeaderRanking from "../components/HeaderRanking/headerRanking";
+import SearchBar from "../components/SearchBar/searchBar";
 
 import Styles from "./ranking.module.scss";
 
@@ -24,8 +25,14 @@ const getPostalCodeInfo = async (postalCode) => {
   );
   const data = await response.json();
 
-  console.log(data[0].population);
   return data[0].population;
+};
+
+const colorMap = {
+  "#388e3c": "A",
+  "#8bc34a": "B",
+  "#ffeb3b": "C",
+  "#ffd700": "D",
 };
 
 const Ranking = () => {
@@ -80,6 +87,8 @@ const Ranking = () => {
           Quartier
         </button>
       </div>
+      <SearchBar />
+
       <div className={Styles.ContainerMap}>
         {showCommunes && geojsonCommunes && (
           <MapLeafletCommunes
@@ -91,30 +100,39 @@ const Ranking = () => {
           <MapLeaflet geojson={geojson} onFeatureClick={handleFeatureClick} />
         )}
       </div>
-      <div className={Styles.ContainerZoneInfos}>
-        <div
-          className={Styles.ContentZoneInfos}
-          style={{ borderColor: `${colorZone}` }}
-        >
-          <div className={Styles.ContainerNames}>
-            <h2 className={Styles.ZoneName}>{InfosName}</h2>
-            <p className={Styles.NbHabitant}>{populationZone} habitants</p>
+      {InfosName !== "Selectionnez une zone" ? (
+        <div className={Styles.ContainerZoneInfos}>
+          <div
+            className={Styles.ContentZoneInfos}
+            style={{ borderColor: `${colorZone}` }}
+          >
+            <div className={Styles.ContainerNames}>
+              <h2 className={Styles.ZoneName}>{InfosName}</h2>
+              <p className={Styles.NbHabitant}>{populationZone} habitants</p>
+            </div>
+            {colorMap[colorZone] && (
+              <p style={{ color: colorZone }}>{colorMap[colorZone]}</p>
+            )}
+            <Image
+              src="/icons/arrow.svg"
+              alt="elephant"
+              width={22}
+              height={22}
+            />
           </div>
-          {colorZone == "#388e3c" ? (
-            <p style={{ color: "#388e3c" }}>A</p>
-          ) : null}
-          {colorZone == "#8bc34a" ? (
-            <p style={{ color: "#8bc34a" }}>B</p>
-          ) : null}
-          {colorZone == "#ffeb3b" ? (
-            <p style={{ color: "#ffeb3b" }}>C</p>
-          ) : null}
-          {colorZone == "#ffd700" ? (
-            <p style={{ color: "#ffd700" }}>D</p>
-          ) : null}
-          <Image src="/icons/arrow.svg" alt="elephant" width={24} height={24} />
         </div>
-      </div>
+      ) : (
+        <div className={Styles.ContainerZoneInfos}>
+          <div
+            className={Styles.ContentZoneInfos}
+            style={{ borderColor: `#ffffff` }}
+          >
+            <div className={Styles.ContainerNames}>
+              <h2 className={Styles.ZoneName}>{InfosName}</h2>{" "}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

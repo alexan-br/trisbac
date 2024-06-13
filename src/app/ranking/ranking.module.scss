@@ -8,8 +8,7 @@
 }
 
 .ContainerSwitchMap {
-  position: absolute;
-  top: 60px;
+  position: relative;
   padding: 10px 10px;
   left: 0;
   z-index: 3;
@@ -29,7 +28,7 @@
     transition: all 0.15s ease-in-out;
     background-color: var(--white);
     border: 2px solid var(--dark);
-    padding: 0px 28px;
+    padding: 0px 22px;
 
     &:first-of-type {
       border-radius: 20px 0 0 20px;
