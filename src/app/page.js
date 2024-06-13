@@ -388,7 +388,9 @@ export default function Home() {
           </div>
         </div>
         <div className={Styles.playButtonContainer}>
-          <button className={Styles.playButton}>Jouer</button>
+          <Link href="/game" className={Styles.playButton}>
+            Jouer
+          </Link>
         </div>
       </HomeModale>
       <HomeModale
