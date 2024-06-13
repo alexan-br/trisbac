@@ -124,13 +124,15 @@ const Ranking = () => {
     setIsModaleOpen(true);
     const modale = document.getElementById("modaleranking");
 
-    modale.style.top = "66px";
+    modale.style.top = "65px";
+    modale.style.height = "100vh";
   }
 
   function CloseModaleOnClick() {
     setIsModaleOpen(false);
     const modale = document.getElementById("modaleranking");
-    modale.style.top = "106vh";
+    modale.style.top = "95vh";
+    modale.style.height = "0vh";
   }
 
   const getColorClass = (color) => {
@@ -149,7 +151,7 @@ const Ranking = () => {
   };
 
   return (
-    <main>
+    <main className={Styles.Main}>
       <HeaderRanking
         urlPage={!isModaleOpen ? "/" : ""}
         isModaleOpen={isModaleOpen}

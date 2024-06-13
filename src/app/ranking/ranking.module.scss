@@ -7,6 +7,12 @@
   height: 100vh; // Vous pouvez ajuster la hauteur selon vos besoins
 }
 
+.Main {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
 .ContainerSwitchMap {
   position: relative;
   padding: 10px 10px;

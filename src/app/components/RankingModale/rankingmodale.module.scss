@@ -1,11 +1,12 @@
 .rankingModaleContainer {
   width: 100%;
   position: absolute;
-  top: 106vh;
+  top: 95vh;
   // top: 66px;
   height: calc(100vh - 66px);
   z-index: 5;
   transition: all 0.3s ease-in-out;
+  height: 0;
   .exitCrossModaleContainer {
     width: 100%;
     display: flex;

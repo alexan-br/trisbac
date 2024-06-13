@@ -32,8 +32,12 @@ a {
 .react-autosuggest__container {
   position: relative;
   z-index: 2;
+
+  display: flex;
+  justify-content: center;
 }
 
 .react-autosuggest__container input {
-  width: 100%;
+  margin: 0px 10px;
+  width: fill-available;
 }
