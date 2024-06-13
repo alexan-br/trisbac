@@ -571,6 +571,9 @@ export default function Home() {
           </p>
           <Link href="/">Comment ce rang est-il établi ?</Link>
         </div>
+        <Link className={Styles.seeMorePlacesLink} href="/ranking">
+          Consulter l'ensemble des {!showCommunes ? "quartiers " : "communes"}
+        </Link>
         <div>
           <h4>Démographie</h4>
           <div className={Styles.dataTable}>
@@ -631,9 +634,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Link className={Styles.seeMorePlacesLink} href="/">
-          Consulter l'ensemble des {!showCommunes ? "quartiers " : "communes"}
-        </Link>
       </HomeModale>
     </main>
   );
