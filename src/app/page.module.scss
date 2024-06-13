@@ -9,8 +9,8 @@ main.main {
 
   .ContainerIconHome {
     position: absolute;
-    top: 6vh;
-    right: 2vh;
+    top: 5vh;
+    left: 2vh;
     z-index: 1;
     display: flex;
     flex-direction: row;
@@ -107,6 +107,7 @@ main.main {
 }
 
 .infoBanner {
+  margin-top: 15px;
   background-color: #f2f2f2;
   text-align: left;
   border: 1px solid #c8c8c8;
@@ -131,6 +132,7 @@ main.main {
   margin-bottom: 30px;
   width: 100%;
   .playButton {
+    display: block;
     font-family: var(--font-primary);
     font-weight: 500;
     width: 100%;
@@ -145,6 +147,182 @@ main.main {
   }
 }
 
+.ContainerSwitchMap {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .ButtonSwitchMap {
+    width: 30%;
+    max-width: 200px;
+    height: 36px;
+    color: var(--dark);
+    border: none;
+    font-family: var(--font-primary);
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+    &.Left {
+      border-radius: 50px 0 0 50px;
+    }
+    &.Right {
+      border-radius: 0 50px 50px 0;
+    }
+    &.ButtonSwitchMapActive {
+      background-color: var(--dark);
+      color: var(--white);
+      box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.006),
+        100px 100px 80px rgba(0, 0, 0, 0.07);
+    }
+  }
+}
+.rankVisualizerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  a,
+  p {
+    text-align: left;
+    font-size: 0.9em;
+  }
+  a {
+    color: var(--pink);
+    text-decoration: underline;
+  }
+
+  .rankVisualizer {
+    position: relative;
+    align-self: center;
+    width: 100%;
+    height: 30px;
+    border-radius: 50px;
+    background: rgb(56, 142, 60);
+    background: linear-gradient(
+      90deg,
+      rgba(56, 142, 60, 1) 10%,
+      rgba(93, 162, 96, 1) 30%,
+      rgba(139, 195, 74, 1) 50%,
+      rgba(255, 235, 59, 1) 70%,
+      rgba(255, 215, 0, 1) 90%
+    );
+    margin-bottom: 15px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      width: 8px;
+      border: 3px solid var(--dark);
+      border-radius: 50px;
+      height: 100%;
+      transform: translateY(-50%);
+    }
+    &::after {
+      content: "A";
+      position: absolute;
+      top: 100%;
+      left: 10%;
+      width: 8px;
+      font-weight: 600;
+      border: 2px solid transparent;
+    }
+  }
+}
+
+.dataTable {
+  margin-top: 15px;
+  padding: 0 15px;
+  > * + * {
+    border-top: 2px solid rgb(206, 206, 206);
+  }
+  .dataRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    // font-size: 0.9em;
+    h5 {
+      font-size: 0.9em;
+    }
+  }
+}
+
+.chartGraph {
+  margin-top: 15px;
+  width: 100%;
+  height: auto;
+}
+
+.seeMorePlacesLink {
+  align-self: center;
+  width: fit-content;
+  padding: 10px;
+  border: 1px solid var(--dark);
+  border-radius: 50px;
+  margin-bottom: 50px;
+}
+.graphMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .yearSelect {
+    position: relative;
+    display: flex;
+    align-items: center;
+    &::after {
+      content: "";
+      display: inline-block;
+      margin-left: -10px;
+      width: 12px;
+      height: 12px;
+      transform: rotate(-90deg);
+      background-image: url("/icons/thin-arrow.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  select {
+    position: relative;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.graphContainer {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  height: 300px;
+  .monthDataContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    .monthDataQuantityBar {
+      text-align: center;
+      width: 55px;
+      padding: 5px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .monthDataName {
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+  }
+}
 @media (min-width: 300px) {
   main.main {
     .cellularItems {

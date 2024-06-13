@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import CellularItem from "./components/CellulareItem/cellularItem";
 import CellularActiveItem from "./components/CellulareActiveItem/cellularActiveItem";
@@ -9,8 +9,12 @@ import CellularMenuItem from "./components/CellularMenuItem/cellularMenuItem";
 import HomeMenu from "./components/HomeMenu/homeMenu";
 import Styles from "./page.module.scss";
 import HomeModale from "./components/HomeModale/homeModale";
+import Link from "next/link";
 
 export default function Home() {
+  const [showCommunes, setShowCommunes] = useState(true); // État pour déterminer quelle carte afficher
+  const [selectedYear, setSelectedYear] = useState(2024); // État pour l'année sélectionnée
+
   const tab_available_items_under_300px = [
     5, 7, 8, 11, 13, 14, 17, 19, 20, 23, 25, 26, 29, 31, 32,
   ];
@@ -20,6 +24,56 @@ export default function Home() {
   const tab_available_items_over_600px = [
     7, 8, 9, 11, 12, 13, 14, 17, 18, 19, 21, 22, 23, 24, 27, 28, 29,
   ];
+
+  const ormData = [
+    {
+      year: 2023,
+      month: [
+        { name: "Jan", quantity: 85, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Fev", quantity: 120, color: "#8BC34A", textColor: "#000000" },
+        { name: "Mar", quantity: 130, color: "#8BC34A", textColor: "#000000" },
+        { name: "Avr", quantity: 120, color: "#8BC34A", textColor: "#000000" },
+        { name: "Mai", quantity: 95, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Jui", quantity: 140, color: "#8BC34A", textColor: "#000000" },
+        { name: "Jui", quantity: 190, color: "#FFEB3B", textColor: "#000000" },
+        { name: "Aou", quantity: 85, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Sep", quantity: 85, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Oct", quantity: 85, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Nov", quantity: 85, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Dec", quantity: 85, color: "#388E3C", textColor: "#FFFFFF" },
+      ],
+    },
+    {
+      year: 2024,
+      month: [
+        { name: "Jan", quantity: 85, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Fev", quantity: 120, color: "#8BC34A", textColor: "#000000" },
+        { name: "Mar", quantity: 130, color: "#8BC34A", textColor: "#000000" },
+        { name: "Avr", quantity: 120, color: "#8BC34A", textColor: "#000000" },
+        { name: "Mai", quantity: 95, color: "#388E3C", textColor: "#FFFFFF" },
+        { name: "Jui", quantity: 140, color: "#8BC34A", textColor: "#000000" },
+        { name: "Jui", quantity: 190, color: "#FFEB3B", textColor: "#000000" },
+        { name: "Aou", quantity: 130, color: "#8BC34A", textColor: "#000000" },
+        { name: "Sep", quantity: 170, color: "#FFEB3B", textColor: "#000000" },
+        { name: "Oct", quantity: 140, color: "#8BC34A", textColor: "#000000" },
+        { name: "Nov", quantity: 150, color: "#FFEB3B", textColor: "#000000" },
+        { name: "Dec", quantity: 200, color: "#FFD700", textColor: "#000000" },
+      ],
+    },
+  ];
+
+  const handleYearChange = (event) => {
+    setSelectedYear(parseInt(event.target.value, 10));
+  };
+
+  const getYearData = (year) => {
+    return ormData.find((data) => data.year === year);
+  };
+
+  const yearData = getYearData(selectedYear);
+  const averageQuantity =
+    yearData?.month.reduce((acc, month) => acc + month.quantity, 0) /
+      yearData?.month.length || 0;
 
   useEffect(() => {
     function SetPositionMainsItems() {
@@ -202,17 +256,17 @@ export default function Home() {
           className="CellularActiveItem"
           cellular={{
             iconLink: "/icons/controller.svg",
-            name: "Mémotri",
-            description: "Ou déposer mes dechets",
+            name: "Jeu du tri",
+            description: "J'apprends à trier mes déchets",
           }}
         />
         <CellularActiveItem
-          id="deuxiemeItem"
+          id="defi"
           className="CellularActiveItem"
           cellular={{
-            iconLink: "/icons/memotri.svg",
-            name: "Mémotri",
-            description: "Ou déposer mes dechets",
+            iconLink: "/icons/defi.svg",
+            name: "Défi tri",
+            description: "consulter l'avancée des quartiers",
           }}
         />
         <CellularActiveItem
@@ -334,8 +388,110 @@ export default function Home() {
           </div>
         </div>
         <div className={Styles.playButtonContainer}>
-          <button className={Styles.playButton}>Jouer</button>
+          <Link href="/game" className={Styles.playButton}>
+            Jouer
+          </Link>
         </div>
+      </HomeModale>
+      <HomeModale
+        id="modaledefi"
+        icon="/icons/defi.svg"
+        modale={{
+          name: "Défi tri",
+          desc: "Nantes (Centre-ville)",
+        }}
+        exitModale={handleCrossCloseModale}
+      >
+        <div className={Styles.ContainerSwitchMap}>
+          <button
+            className={`${Styles.ButtonSwitchMap} ${Styles.Left} ${
+              showCommunes ? Styles.ButtonSwitchMapActive : ""
+            }`}
+            onClick={() => setShowCommunes(true)}
+          >
+            Commune
+          </button>
+          <button
+            className={`${Styles.ButtonSwitchMap} ${Styles.Right} ${
+              !showCommunes ? Styles.ButtonSwitchMapActive : ""
+            }`}
+            onClick={() => setShowCommunes(false)}
+          >
+            Quartier
+          </button>
+        </div>
+        <div className={Styles.rankVisualizerContainer}>
+          <h4>Rang {!showCommunes ? "du quartier " : "de la commune"}</h4>
+          <div className={Styles.rankVisualizer}></div>
+          <p>
+            Ce rang est calculé à partir de la quantité d’ordures ménagères
+            résiduelles (OMR) produites
+          </p>
+          <Link href="/">Comment ce rang est-il établi ?</Link>
+        </div>
+        <div>
+          <h4>Démographie</h4>
+          <div className={Styles.dataTable}>
+            <div className={Styles.dataRow}>
+              <h5>Nombre d'habitant</h5>
+              <div>Bon</div>
+            </div>
+            <div className={Styles.dataRow}>
+              <h5>Surface (km²)</h5>
+              <div>145</div>
+            </div>
+            <div className={Styles.dataRow}>
+              <h5>Système de tri</h5>
+              <div>Bacs et poubelles</div>
+            </div>
+            <div className={Styles.dataRow}>
+              <h5>Zone</h5>
+              <div>Urbaine</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4>Quantité d'ORM produits</h4>
+          <div className={Styles.infoBanner}>
+            <div className={Styles.graphMenu}>
+              <div className={Styles.yearSelect}>
+                <select onChange={handleYearChange} value={selectedYear}>
+                  {ormData.map((data) => (
+                    <option key={data.year} value={data.year}>
+                      {data.year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                Moyenne annuelle :{" "}
+                <span style={{ fontWeight: "600" }}>
+                  {averageQuantity.toFixed(2)} kg
+                </span>
+              </div>
+            </div>
+            <div className={Styles.graphContainer}>
+              {yearData?.month.map((month, index) => (
+                <div key={index} className={Styles.monthDataContainer}>
+                  <div
+                    className={Styles.monthDataQuantityBar}
+                    style={{
+                      backgroundColor: month.color,
+                      color: month.textColor,
+                      height: `calc(${(month.quantity / 200) * 100}% - 40px)`, // Supposant que 200 est la quantité maximale
+                    }}
+                  >
+                    {month.quantity}kg
+                  </div>
+                  <div className={Styles.monthDataName}>{month.name}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <Link className={Styles.seeMorePlacesLink} href="/">
+          Consulter l'ensemble des {!showCommunes ? "quartiers " : "communes"}
+        </Link>
       </HomeModale>
     </main>
   );

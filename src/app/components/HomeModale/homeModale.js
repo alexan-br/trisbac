@@ -9,7 +9,7 @@ import CellularActiveItem from "../CellulareActiveItem/cellularActiveItem";
 export default function HomeModale({ id, icon, modale, children, exitModale }) {
   return (
     <div id={id} className={Style.homeModaleContainer}>
-      <div>
+      <div className={Style.exitCrossModaleContainer}>
         <img
           className={Style.exitCrossModale}
           src="/icons/exit-cross.svg"
