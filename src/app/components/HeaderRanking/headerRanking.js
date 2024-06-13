@@ -3,9 +3,16 @@ import Link from "next/link";
 
 import Styles from "./headerRanking.module.scss";
 
-const HeaderRanking = ({ urlPage }) => {
+const HeaderRanking = ({ urlPage, isModaleOpen, CloseModaleOnClick }) => {
+  const handleClick = (e) => {
+    if (isModaleOpen) {
+      urlPage = "";
+      e.preventDefault(); // Empêche la redirection par défaut
+      CloseModaleOnClick(); // Ferme la modale
+    }
+  };
   return (
-    <header className={Styles.Header}>
+    <header className={Styles.Header} onClick={handleClick}>
       <Link href={urlPage}>
         <Image
           className={Styles.Arrow}
