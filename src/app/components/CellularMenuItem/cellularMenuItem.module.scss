@@ -1,0 +1,65 @@
+.cellularItem {
+  .cellularMask {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -webkit-mask-image: url(mask.svg);
+    mask-image: url(mask.svg);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-position: center;
+    mask-composite: exclude;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 4%;
+    padding: 0 10%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url(mask-border-white.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    img {
+      width: clamp(20px, 32%, 75px);
+      height: auto;
+    }
+
+    h2 {
+      color: white;
+      text-transform: uppercase;
+      font-weight: 400;
+      text-align: center;
+      font-size: clamp(12px, 3vw, 20px);
+    }
+    p {
+      color: white;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: clamp(10px, 2.6vw, 18px);
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .cellularItem {
+    .cellularMask {
+      p {
+        font-size: clamp(10px, 2.2vw, 18px);
+      }
+    }
+  }
+}

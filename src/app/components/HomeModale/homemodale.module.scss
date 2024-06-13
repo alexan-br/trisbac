@@ -1,0 +1,63 @@
+.homeModaleContainer {
+  width: 100%;
+  position: absolute;
+  top: 106vh;
+  max-height: 0px !important;
+  z-index: 5;
+  transition: all 0.3s ease-in-out;
+  .exitCrossModaleContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .exitCrossModale {
+      margin-bottom: 50px;
+      margin-right: 15px;
+    }
+  }
+  .modaleContentContainer {
+    background-color: var(--white);
+    position: relative;
+    height: 85vh;
+    &::before {
+      content: "";
+      pointer-events: none;
+      background-image: url("/icons/arrondi-modale.svg");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      aspect-ratio: 390/19;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateY(-97%);
+    }
+    .icon {
+      transform: translateY(-80px);
+      height: 125px;
+      pointer-events: none;
+      img {
+        width: clamp(20px, 17%, 75px);
+      }
+    }
+    .modaleInfo {
+      margin-top: -50px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      text-align: center;
+      max-height: 76vh;
+      overflow-y: auto;
+      & > p:nth-child(2) {
+        text-align: left;
+        padding: 0 15px;
+        font-size: 0.9em;
+      }
+      h3 {
+        text-transform: uppercase;
+        font-size: 1.4em;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
