@@ -35,9 +35,51 @@ a {
 
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
 }
 
 .react-autosuggest__container input {
-  margin: 0px 10px;
   width: fill-available;
+  padding: 8px 6px;
+  padding-left: 30px;
+  border: none;
+  border-radius: 4px;
+}
+.react-autosuggest__container::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  display: block;
+  background-image: url(../../public/icons/loupe.svg);
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translate(8px, 0px);
+  opacity: 0.6;
+}
+
+.react-autosuggest__container::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  display: block;
+  background-image: url(../../public/icons/geoloc.svg);
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translate(-8px, 0px);
+  opacity: 0.6;
+}
+
+.react-autosuggest__container div {
+  background-color: var(--white);
+  font-size: 12px;
+}
+
+.react-autosuggest__container div div {
+  padding: 6px;
 }
