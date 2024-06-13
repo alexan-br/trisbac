@@ -9,7 +9,33 @@ const SearchBar = () => {
   const [suggestions, setSuggestions] = useState([]);
 
   // Liste de mots pour l'autocomplétion
-  const wordList = ["mot1", "mot2", "mot3"];
+  const wordList = [
+    "NANTES",
+    "REZE",
+    "SAINT-HERBLAIN",
+    "ORVAULT",
+    "SAUTRON",
+    "COUERON",
+    "BOUGUENAIS",
+    "SAINT-SEBASTIEN-SUR-LOIRE",
+    "VERTOU",
+    "BOUAYE",
+    "LA MONTAGNE",
+    "CARQUEFOU",
+    "SAINTE-LUCE-SUR-LOIRE",
+    "BASSE-GOULAINE",
+    "SAINTE-PAZANNE",
+    "MAUVES-SUR-LOIRE",
+    "LA CHAPELLE-SUR-ERDRE",
+    "LE PELLERIN",
+    "SAINT-JEAN-DE-BOISEAU",
+    "INDRE",
+    "THOUARE-SUR-LOIRE",
+    "SAINT-AIGNAN-GRANDLIEU",
+    "SAINT-LEGER-LES-VIGNES",
+    "BRAINS",
+    "LES SORINIERES",
+  ];
 
   // Fonction pour filtrer les suggestions
   const getSuggestions = (inputValue) => {
