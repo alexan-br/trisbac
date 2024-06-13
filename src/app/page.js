@@ -352,6 +352,12 @@ export default function Home() {
         <CellularFakeItem hasBackground={false} />
         <CellularFakeItem hasBackground={false} />
 
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+
         <CellularMenuItem
           className="CellularMenuItem"
           cellular={{
@@ -387,7 +393,7 @@ export default function Home() {
         <CellularMenuItem
           className="CellularMenuItem"
           cellular={{
-            iconLink: "/icons/Parking P+R.svg",
+            iconLink: "/icons/Parking_P+R.svg",
             name: "Parkings P+R",
             description: "Places disponibles",
           }}
