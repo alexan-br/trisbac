@@ -16,13 +16,17 @@ export default function Home() {
   const [selectedYear, setSelectedYear] = useState(2024); // État pour l'année sélectionnée
 
   const tab_available_items_under_300px = [
-    5, 7, 8, 11, 13, 14, 17, 19, 20, 23, 25, 26, 29, 31, 32,
+    5, 7, 8, 11, 13, 14, 17, 19, 20, 23, 25, 26, 29, 30, 31, 35, 37, 38, 41, 43,
+    44, 47, 49, 50, 51, 53, 55, 56, 59, 61, 62, 65, 67, 68, 71, 73, 74, 77, 79,
+    80,
   ];
   const tab_available_items_under_600px = [
-    6, 7, 9, 10, 11, 14, 15, 17, 18, 19, 22, 23, 25, 26, 27, 32, 33,
+    6, 7, 9, 10, 11, 14, 15, 17, 18, 19, 22, 23, 25, 26, 27, 30, 31, 34, 36, 37,
+    38, 41, 42, 43, 44, 45, 47, 48, 49, 50,
   ];
   const tab_available_items_over_600px = [
-    7, 8, 9, 11, 12, 13, 14, 17, 18, 19, 21, 22, 23, 24, 27, 28, 29,
+    7, 8, 9, 11, 12, 13, 14, 17, 18, 19, 21, 22, 23, 24, 27, 28, 29, 31, 34, 35,
+    34, 35, 36, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 50,
   ];
 
   const ormData = [
@@ -76,6 +80,52 @@ export default function Home() {
       yearData?.month.length || 0;
 
   useEffect(() => {
+    function SetPositionMainsMenuItems() {
+      const mainContainerMenuCellular = document.getElementById(
+        "mainContainerMenuCellular"
+      );
+
+      let tab_available_items = [];
+
+      if (mainContainerMenuCellular) {
+        if (window.innerWidth < 300) {
+          tab_available_items = [...tab_available_items_under_300px];
+        } else if (window.innerWidth < 600) {
+          tab_available_items = [...tab_available_items_under_600px];
+        } else {
+          tab_available_items = [...tab_available_items_over_600px];
+        }
+
+        const activeItems = Array.from(
+          mainContainerMenuCellular.getElementsByClassName("CellularMenuItem")
+        );
+
+        let lastPosition = -1;
+
+        activeItems.forEach((item) => {
+          if (!item.dataset.moved && tab_available_items.length > 0) {
+            const position = tab_available_items.shift() - 1; // Récupérer et supprimer la première valeur du tableau
+            const targetPosition = Math.min(
+              position,
+              mainContainerMenuCellular.children.length
+            ); // S'assurer que la position est dans les limites
+
+            // Déplacer l'élément vers la position cible
+            mainContainerMenuCellular.insertBefore(
+              item,
+              mainContainerMenuCellular.children[targetPosition]
+            );
+
+            // Mettre à jour la dernière position
+            lastPosition = Math.max(lastPosition, position);
+
+            // Marquer cet élément comme déplacé
+            item.dataset.moved = true;
+          }
+        });
+      }
+    }
+
     function SetPositionMainsItems() {
       // Gere la position des items de la home en fonction de la taille de l'écran
 
@@ -156,7 +206,6 @@ export default function Home() {
 
         // on récupere le premier enfant de mainContainerMenuCellular
         const firstChild = mainContainerMenuCellular.firstElementChild;
-        console.log(firstChild);
         if (firstChild) {
           firstChild.addEventListener("click", () => {
             mainContainerMenuCellular.style.top = "106vh";
@@ -172,7 +221,7 @@ export default function Home() {
         item.addEventListener("click", () => {
           const id = item.getAttribute("id");
           const modale = document.getElementById("modale" + id);
-          console.log(modale);
+
           modale.style.top = "5vh";
           modale.style.maxHeight = "103vh";
         });
@@ -181,6 +230,7 @@ export default function Home() {
 
     ToggleMenu();
     SetPositionMainsItems();
+    SetPositionMainsMenuItems();
     OpenModaleOnClick();
   }, []);
 
@@ -290,7 +340,20 @@ export default function Home() {
         <CellularFakeItem hasBackground={false} />
         <CellularFakeItem hasBackground={false} />
 
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+        <CellularFakeItem hasBackground={false} />
+
         <CellularMenuItem
+          className="CellularMenuItem"
           cellular={{
             iconLink: "/icons/train.svg",
             name: "Bus - Tram",
@@ -298,69 +361,142 @@ export default function Home() {
           }}
         />
         <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/Cars.svg",
+            name: "Circulation",
+            description: "Infos trafic",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/mid_account-school.svg",
+            name: "écoles",
+            description: "Menus et alertes",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/Parking.svg",
+            name: "Parkings",
+            description: "Places disponibles",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/Parking P+R.svg",
+            name: "Parkings P+R",
+            description: "Places disponibles",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/Shield.svg",
+            name: "Sécurité",
+            description: "Contacts et ressources utiles",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/mdi_movie-open.svg",
+            name: "Cinémas",
+            description: "Sorties de la semaines",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/fa6-solid_person-swimming.svg",
+            name: "Piscines",
+            description: "Horaires et fermetures",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/mid_trash-can-empty.svg",
+            name: "Déchets",
+            description: "Rendez-vous et lieux",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/mid_trash-can-empty.svg",
+            name: "Mémotri",
+            description: "Où déposer mes déchets ?",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/basil_gamepad-outline.svg",
+            name: "Jeu du tri",
+            description: "J’apprends à trier mes déchets",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/material-symbols_handshake-outline.svg",
+            name: "Defi tri",
+            description: "Consulter l’avancée des quartiers",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/healthicons_bike-outline.svg",
+            name: "Vélo libre-service",
+            description: "Disponibilités",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
           cellular={{
             iconLink: "/icons/train.svg",
-            name: "Bus - Tram",
+            name: "Train",
             description: "Prochains passages",
           }}
         />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
-        <CellularFakeItem hasBackground={false} />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink:
+              "/icons/material-symbols-light_directions-bus-outline.svg",
+            name: "Aleop",
+            description: "Prochains passages",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/oui_alert.svg",
+            name: "Voie publique",
+            description: "Un probleme ?",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/f7_book-fill.svg",
+            name: "Bibliothèque",
+            description: "Horaires et fermeture",
+          }}
+        />
+        <CellularMenuItem
+          className="CellularMenuItem"
+          cellular={{
+            iconLink: "/icons/f7_book-fill.svg",
+            name: "Météo",
+            description: "de notre ville",
+          }}
+        />
       </div>
       {/*<div className={Styles.ContainerModale}></div> */}
       <HomeModale
