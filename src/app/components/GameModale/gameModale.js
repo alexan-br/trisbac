@@ -9,6 +9,8 @@ export default function GameModale({
   updatePlayerScoreWin,
   updatePlayerScoreLose,
 }) {
+  const [isTrueQcm, setIsTrueQcm] = useState(false);
+
   function CloseModale() {
     document.getElementById(id).style.display = "none";
     document.getElementById(`true${id}`).style.display = "none";
@@ -27,9 +29,15 @@ export default function GameModale({
 
   function EndGameModaleWin() {
     updatePlayerScoreWin();
+    setIsTrueQcm(true);
     document.getElementById(id).style.display = "none";
   }
 
+  function EndGameModaleLose() {
+    updatePlayerScoreLose();
+    setIsTrueQcm(false);
+    document.getElementById(id).style.display = "none";
+  }
   function handleQcmDisplay() {
     document.getElementById(`qcm${id}`).style.display = "flex";
     document.getElementById(`true${id}`).style.display = "none";
@@ -148,7 +156,7 @@ export default function GameModale({
           className={Styles.nextButton}
           onClick={() =>
             id !== "GameModaleBouteille_plastique"
-              ? EndGameModaleWin()
+              ? EndGameModaleLose()
               : handleQcmDisplay()
           }
         >
@@ -240,7 +248,10 @@ export default function GameModale({
           ))} */}
         </div>
 
-        <button className={Styles.nextButton} onClick={EndGameModaleWin}>
+        <button
+          className={Styles.nextButton}
+          onClick={!isTrueQcm ? EndGameModaleWin : EndGameModaleLose}
+        >
           Suivant
         </button>
       </div>
