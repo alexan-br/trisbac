@@ -140,7 +140,7 @@ const GamePageRules = () => {
             style={{ borderColor: "#f38b46" }}
           >
             <Image
-              src="/images/jeu/Dechets_dangereux_logo.png"
+              src="/images/jeu/Decehts_dangereux_logo.png"
               alt="Dêchets dangereux logo"
               width={100}
               height={100}
@@ -171,7 +171,7 @@ const GamePageRules = () => {
             <div style={{ backgroundColor: "#46c1e1" }}>
               <p>Dêchets ménagers</p>
               <Image
-                src="/images/jeu/Déchets_ménagers.png"
+                src="/images/jeu/Dechets meenagers.png"
                 alt="Dêchets ménagers"
                 width={100}
                 height={100}
