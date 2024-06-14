@@ -180,7 +180,7 @@ export default function Game() {
             <div className={Styles.scoreResult}>
               {PlayerScore[0].nombreObjectValide / 2}/5
             </div>
-            {PlayerScore[0].nombreObjectValide <= 6 ? <Confetti /> : null}
+            {PlayerScore[0].nombreObjectValide >= 6 ? <Confetti /> : null}
           </div>
           <div className={Styles.resultButtonContainer}>
             <Link
