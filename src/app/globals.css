@@ -85,3 +85,7 @@ a {
 .react-autosuggest__container div div {
   padding: 6px;
 }
+
+.react-autosuggest__container div ul li {
+  list-style: none;
+}
