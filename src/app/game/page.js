@@ -93,6 +93,7 @@ export default function Game() {
       document.getElementById(idObject).style.display = "none";
       var containerImage = document.getElementById(`IconDechet${idObject}`);
       containerImage.firstChild.style.filter = "brightness(1)";
+      console.log(updatedScore);
       return updatedScore;
     });
   };
@@ -105,6 +106,7 @@ export default function Game() {
       document.getElementById(idObject).style.display = "none";
       var containerImage = document.getElementById(`IconDechet${idObject}`);
       containerImage.firstChild.style.filter = "brightness(1)";
+      console.log(updatedScore);
       return updatedScore;
     });
   };
@@ -162,7 +164,7 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
-      {PlayerScore[0].nombreObjectJoue === 10 ? (
+      {PlayerScore[0].nombreObjectJoue === 5 ? (
         <GameResultModale
           modale={{ name: "Félicitations ! Tu as nettoyé toute la rue !" }}
         >
@@ -178,9 +180,9 @@ export default function Game() {
           </div>
           <div className={Styles.scoreContainer}>
             <div className={Styles.scoreResult}>
-              {PlayerScore[0].nombreObjectValide / 2}/5
+              {PlayerScore[0].nombreObjectValide}/5
             </div>
-            {PlayerScore[0].nombreObjectValide >= 6 ? <Confetti /> : null}
+            {PlayerScore[0].nombreObjectValide >= 3 ? <Confetti /> : null}
           </div>
           <div className={Styles.resultButtonContainer}>
             <Link
