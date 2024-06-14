@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-const MapLeaflet = ({ geojson, onFeatureClick }) => {
+const MapLeaflet = ({ geojson, onFeatureClick, selectedZoneName }) => {
   const [clickedZoneId, setClickedZoneId] = useState(null);
   const [colorZone, setColorZone] = useState("#83859b"); // État pour stocker la couleur
 
@@ -28,6 +28,23 @@ const MapLeaflet = ({ geojson, onFeatureClick }) => {
       },
     });
   };
+
+  useEffect(() => {
+    if (selectedZoneName) {
+      const selectedFeature = geojson.features.find(
+        (feature) => feature.properties.nom === selectedZoneName
+      );
+
+      console.log(selectedFeature);
+
+      if (selectedFeature) {
+        setClickedZoneId(selectedFeature.properties.nom);
+        const color = getColorQuartier(selectedFeature.properties.nom);
+        setColorZone(color); // Mettez à jour la couleur ici
+        onFeatureClick(selectedFeature, color);
+      }
+    }
+  }, [selectedZoneName, geojson, getColorQuartier]);
 
   const style = (feature) => {
     return {

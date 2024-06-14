@@ -521,13 +521,13 @@ export default function Home() {
         </p>
         <div className={Styles.infoBanner}>
           <h4>Informations</h4>
-          <div className={Styles.infoCta}>
+          <Link href="/game/rules" className={Styles.infoCta}>
             <p>
               Retrouvez toutes les informations sur le tri des déchets, de façon
               ludique.
             </p>
             <img src="/icons/arrow.svg" />
-          </div>
+          </Link>
         </div>
         <div className={Styles.playButtonContainer}>
           <Link href="/game" className={Styles.playButton}>
@@ -536,11 +536,14 @@ export default function Home() {
         </div>
       </HomeModale>
       <HomeModale
+        className={`${
+          showCommunes ? Styles.defiCommune : Styles.defiQuartier
+        } ${Styles.defiContainer}`}
         id="modaledefi"
         icon="/icons/defi.svg"
         modale={{
           name: "Défi tri",
-          desc: "Nantes (Centre-ville)",
+          desc: showCommunes ? "Nantes (Centre-ville)" : "Centre-ville",
         }}
         exitModale={handleCrossCloseModale}
       >
@@ -571,12 +574,15 @@ export default function Home() {
           </p>
           <Link href="/">Comment ce rang est-il établi ?</Link>
         </div>
+        <Link className={Styles.seeMorePlacesLink} href="/ranking">
+          Consulter l'ensemble des {!showCommunes ? "quartiers " : "communes"}
+        </Link>
         <div>
           <h4>Démographie</h4>
           <div className={Styles.dataTable}>
             <div className={Styles.dataRow}>
               <h5>Nombre d'habitant</h5>
-              <div>Bon</div>
+              <div>{showCommunes ? "323 204" : "25 621"}</div>
             </div>
             <div className={Styles.dataRow}>
               <h5>Surface (km²)</h5>
@@ -631,9 +637,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Link className={Styles.seeMorePlacesLink} href="/">
-          Consulter l'ensemble des {!showCommunes ? "quartiers " : "communes"}
-        </Link>
       </HomeModale>
     </main>
   );

@@ -6,9 +6,16 @@ import { Children } from "react";
 import Style from "./homemodale.module.scss";
 import CellularActiveItem from "../CellulareActiveItem/cellularActiveItem";
 
-export default function HomeModale({ id, icon, modale, children, exitModale }) {
+export default function HomeModale({
+  id,
+  icon,
+  modale,
+  children,
+  exitModale,
+  className,
+}) {
   return (
-    <div id={id} className={Style.homeModaleContainer}>
+    <div id={id} className={`${Style.homeModaleContainer} ${className}`}>
       <div className={Style.exitCrossModaleContainer}>
         <img
           className={Style.exitCrossModale}
