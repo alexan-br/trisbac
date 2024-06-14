@@ -93,6 +93,7 @@ export default function Game() {
       document.getElementById(idObject).style.display = "none";
       var containerImage = document.getElementById(`IconDechet${idObject}`);
       containerImage.firstChild.style.filter = "brightness(1)";
+      console.log(updatedScore);
       return updatedScore;
     });
   };
@@ -105,6 +106,7 @@ export default function Game() {
       document.getElementById(idObject).style.display = "none";
       var containerImage = document.getElementById(`IconDechet${idObject}`);
       containerImage.firstChild.style.filter = "brightness(1)";
+      console.log(updatedScore);
       return updatedScore;
     });
   };
@@ -162,7 +164,7 @@ export default function Game() {
 
   return (
     <main className={Styles.Main}>
-      {PlayerScore[0].nombreObjectJoue === 10 ? (
+      {PlayerScore[0].nombreObjectJoue === 5 ? (
         <GameResultModale
           modale={{ name: "Félicitations ! Tu as nettoyé toute la rue !" }}
         >
