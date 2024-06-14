@@ -20,11 +20,14 @@
     max-width: 95%;
     width: 95%;
     border-radius: 10px;
-    padding: 30px 20px 10px;
+    padding: 15px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.315);
 
     &.false {
       display: none;
@@ -33,15 +36,35 @@
     &.true {
       display: none;
     }
+    &.qcm {
+      display: none;
+    }
 
     p {
       text-align: center;
     }
+    .question {
+      font-weight: 600;
+      font-size: 1.4em;
+    }
+    .currentItemContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      img {
+        width: auto;
+        height: 125px;
+      }
+      p {
+        color: var(--pink);
+        font-weight: 600;
+        font-size: 1.2em;
+      }
+    }
 
     img.CrossExitBlack {
-      position: absolute;
-      top: 20px;
-      left: 20px;
+      align-self: self-end;
       width: 20px;
       height: 20px;
     }
@@ -65,6 +88,23 @@
           font-weight: 600;
         }
       }
+    }
+    .nextButton {
+      appearance: none;
+      border: none;
+      font-size: inherit;
+      background: none;
+      color: var(--pink);
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 1em;
+      align-self: self-end;
+    }
+    .answerContainer {
+      display: inline;
+    }
+    .markAnswer {
+      align-self: baseline;
     }
   }
 }

@@ -20,17 +20,21 @@ export default function Game() {
       nameValidePoubelle: "Poubelle bleue",
       urlInvalidePoubelle: "/images/jeu/Poubelle_jaune.png",
       nameInvalidePoubelle: "Poubelle jaune",
+      recyclageValideOptions: ["", "", ""],
+      recyclageInvalideOptions: "",
     },
   ];
 
   const tabPommeAlimentUrl = [
     {
       urlImage: "/images/jeu/Pomme_aliment.png",
-      nameObject: "Trognon de Pomme",
+      nameObject: "Trognon de pomme",
       urlValidePoubelle: "/images/jeu/Bac_de_compost.png",
       nameValidePoubelle: "Bac à compost",
       urlInvalidePoubelle: "/images/jeu/Bac_a_verre.png",
       nameInvalidePoubelle: "Colonne à verre",
+      recyclageValideOptions: ["", "", ""],
+      recyclageInvalideOptions: "",
     },
   ];
 
@@ -42,6 +46,8 @@ export default function Game() {
       nameValidePoubelle: "Poubelle jaune",
       urlInvalidePoubelle: "/images/jeu/Poubelle_bleue.png",
       nameInvalidePoubelle: "Poubelle bleue",
+      recyclageValideOptions: ["", "", ""],
+      recyclageInvalideOptions: "",
     },
   ];
 
@@ -53,6 +59,8 @@ export default function Game() {
       nameValidePoubelle: "Colonne à verre",
       urlInvalidePoubelle: "/images/jeu/Bac_de_compost.png",
       nameInvalidePoubelle: "Compost",
+      recyclageValideOptions: ["", "", ""],
+      recyclageInvalideOptions: "",
     },
   ];
 
@@ -64,6 +72,12 @@ export default function Game() {
       nameValidePoubelle: "Poubelle jaune",
       urlInvalidePoubelle: "/images/jeu/Bac_a_verre.png",
       nameInvalidePoubelle: "Colonne à verre",
+      recyclageValideOptions: [
+        "/images/jeu/Bouteille_plastique_recyclage.png",
+        "/images/jeu/Fibres_textiles.png",
+        "/images/jeu/Arrosoir.png",
+      ],
+      recyclageInvalideOptions: "/images/jeu/Fromage.png",
     },
   ];
 
@@ -186,13 +200,15 @@ export default function Game() {
       ) : null}
       {isFirstTime ? <TutoCard /> : null}
       <div className={Styles.GameContainer}>
-        <Image
-          src="/icons/exit-cross.svg"
-          className={Styles.CrossExit}
-          width={50}
-          height={50}
-          alt="ExitCross"
-        />
+        <Link href="/">
+          <Image
+            src="/icons/exit-cross.svg"
+            className={Styles.CrossExit}
+            width={50}
+            height={50}
+            alt="ExitCross"
+          />
+        </Link>
         <div className={Styles.MascotteContainer}>
           <Image
             src="/images/Ile-de-Nantes-Mascotte.png"
